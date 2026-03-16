@@ -1,0 +1,18 @@
+.App {
+  margin: 3%
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 2vw;
+}
+
+.header {
+  margin-left: 90px;
+  margin-bottom: 60px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: aliceblue;
+}
