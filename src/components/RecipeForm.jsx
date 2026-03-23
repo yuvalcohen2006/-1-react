@@ -1,8 +1,11 @@
 import { useState } from "react";
 import "../styles/Form.css";
 import { FaPlus } from "react-icons/fa";
+import { useRecipes } from "../context/RecipeContext.jsx";
  
-const RecipeForm = ({ onAdd }) => {
+const RecipeForm = () => {
+  const { addRecipe } = useRecipes();
+
   const [formData, setFormData] = useState({
     title: "",
     ingredients: [""],
@@ -43,7 +46,7 @@ const RecipeForm = ({ onAdd }) => {
  
     if (!title || ingredients[0] === "" || instructions[0] === "") return;
  
-    onAdd({
+    addRecipe({
       title,
       ingredients: ingredients.filter((i) => i !== "").join(", "),
       recipe: instructions.filter((i) => i !== "").join(", "),
@@ -127,4 +130,3 @@ const RecipeForm = ({ onAdd }) => {
 };
  
 export default RecipeForm;
- 

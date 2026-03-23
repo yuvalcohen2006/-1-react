@@ -1,10 +1,13 @@
 import "../styles/Card.css";
-import CardButton from "./CardButton";
+import CardButton from "./CardButton"
+import { useRecipes } from "../context/RecipeContext.jsx";
 
-const Card = ({ recipes, onSelect }) => {
+const Card = ({ onSelect }) => {
+  const { recipeList } = useRecipes();
+
   return (
     <div className="card-container">
-      {recipes.map((recipe, index) => (
+      {recipeList.map((recipe, index) => (
         <CardButton key={index} recipe={recipe} onSelect={onSelect} />
       ))}
     </div>
