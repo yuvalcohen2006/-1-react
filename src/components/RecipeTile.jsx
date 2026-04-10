@@ -1,7 +1,6 @@
-import "../styles/Card.css";
+import "../styles/RecipeCard.css";
 
-const CardButton = ({ recipe, onSelect }) => {
-
+const RecipeTile = ({ recipe, onSelect }) => {
   return (
     <div className="card-content-square" onClick={() => onSelect(recipe)}>
       {recipe.title}
@@ -9,4 +8,4 @@ const CardButton = ({ recipe, onSelect }) => {
   );
 };
 
-export default CardButton;
+export default RecipeTile;

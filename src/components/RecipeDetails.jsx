@@ -1,13 +1,13 @@
-import "../styles/Card.css";
+import "../styles/RecipeCard.css";
 
-const RecipeDetail = ({ recipe }) => {
+const RecipeDetails = ({ recipe }) => {
   return (
     <div className="recipe-detail-container">
       <h2>{recipe.title}</h2>
       <h4>Ingredients</h4>
       <p>{recipe.ingredients}</p>
       <h4>Recipe</h4>
-      <p>{recipe.recipe}</p>
+      <p>{recipe.instructions}</p>
       {recipe.image && (
         <div className="recipe-image-wrapper">
           <h4>Photo</h4>
@@ -18,4 +18,4 @@ const RecipeDetail = ({ recipe }) => {
   );
 };
 
-export default RecipeDetail;
+export default RecipeDetails;

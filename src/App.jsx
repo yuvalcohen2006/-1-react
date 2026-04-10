@@ -1,20 +1,20 @@
 import { useState } from "react";
-import Card from "./components/Card.jsx";
+import RecipeList from "./components/RecipeList.jsx";
 import "./styles/App.css";
-import RecipeDetail from "./components/RecipeDetail.jsx";
+import RecipeDetails from "./components/RecipeDetails.jsx";
 import RecipeForm from "./components/RecipeForm.jsx";
 import { RecipeProvider } from "./context/RecipeContext.jsx";
 
-function App() {
+const App = () => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
 
   return (
     <RecipeProvider>
-      <div className="App">
+      <div className="app">
         <div className="header">Click any recipe to expand</div>
         <div className="content-container">
-          <Card onSelect={setSelectedRecipe} />
-          {selectedRecipe && <RecipeDetail recipe={selectedRecipe} />}
+          <RecipeList onSelect={setSelectedRecipe} />
+          {selectedRecipe && <RecipeDetails recipe={selectedRecipe} />}
           <RecipeForm />
         </div>
       </div>
