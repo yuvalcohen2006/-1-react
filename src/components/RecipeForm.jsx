@@ -1,24 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/Form.css";
 import { FaPlus } from "react-icons/fa";
 import { useRecipes } from "../context/RecipeContext.jsx";
 import ImageDropZone from "./ImageDropZone.jsx";
 import useFormList from "../hooks/useFormList.js";
 
-const RecipeForm = () => {
-  const { addRecipe } = useRecipes();
+const RecipeForm = ({ recipeToEdit, onEditDone }) => {
+  const { addRecipe, editRecipe } = useRecipes();
 
-  const [formData, setFormData] = useState({
+  const emptyForm = {
     title: "",
     ingredients: [""],
     instructions: [""],
-    image: null,
-  });
+    image: null
+  };
 
+  const [formData, setFormData] = useState(emptyForm);
   const [clicked, setClicked] = useState(false);
   const [error, setError] = useState("");
 
-  const { handleListChange, handleListBlur } = useFormList(formData, setFormData);
+  const { handleListChange, handleListBlur } = useFormList(
+    formData,
+    setFormData,
+  );
+
+  useEffect(() => {
+    if (recipeToEdit) {
+      setFormData({
+        title: recipeToEdit.title,
+        ingredients: [...recipeToEdit.ingredients.split(", "), ""],
+        instructions: [...recipeToEdit.instructions.split(", "), ""],
+        image: recipeToEdit.image,
+      });
+      setClicked(true);
+    }
+  }, [recipeToEdit]);
 
   const handleSubmit = () => {
     const { title, ingredients, instructions, image } = formData;
@@ -27,24 +43,28 @@ const RecipeForm = () => {
     const hasInstructions = instructions.some((i) => i !== "");
 
     if (!title || !hasIngredients || !hasInstructions) {
-      setError("Please fill in a title, at least one ingredient, and at least one instruction.");
+      setError(
+        "Please fill in a title, at least one ingredient, and at least one instruction.",
+      );
       return;
     }
 
-    setError("");
-    addRecipe({
+    const recipe = {
       title,
       ingredients: ingredients.filter((i) => i !== "").join(", "),
       instructions: instructions.filter((i) => i !== "").join(", "),
       image,
-    });
+    };
 
-    setFormData({
-      title: "",
-      ingredients: [""],
-      instructions: [""],
-      image: null,
-    });
+    if (recipeToEdit) {
+      editRecipe(recipe, recipeToEdit);
+      onEditDone();
+    } else {
+      addRecipe(recipe);
+    }
+
+    setError("");
+    setFormData(emptyForm);
     setClicked(false);
   };
 
@@ -107,7 +127,7 @@ const RecipeForm = () => {
           {error && <p className="error-message">{error}</p>}
 
           <div className="submit-button" onClick={handleSubmit}>
-            Add Recipe
+            {recipeToEdit ? "Save Changes" : "Add Recipe"}
           </div>
         </div>
       )}

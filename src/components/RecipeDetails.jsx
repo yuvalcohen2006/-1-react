@@ -6,7 +6,7 @@ const RecipeDetails = ({ recipe }) => {
       <h2>{recipe.title}</h2>
       <h4>Ingredients</h4>
       <p>{recipe.ingredients}</p>
-      <h4>Recipe</h4>
+      <h4>Instructions</h4>
       <p>{recipe.instructions}</p>
       {recipe.image && (
         <div className="recipe-image-wrapper">

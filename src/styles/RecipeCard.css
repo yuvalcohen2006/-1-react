@@ -12,6 +12,7 @@
 }
 
 .card-content-square {
+  position: relative; 
   border-radius: 20px;
   height: 10vh;
   width: 25vw;
@@ -98,4 +99,42 @@
   margin-top: 1vh;
   object-fit: cover;
   max-height: 30vh;
+}
+
+.delete-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  color: rgba(255, 100, 100, 0.6);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.delete-button:hover {
+  color: rgba(255, 100, 100, 1);
+  background-color: rgba(255, 60, 60, 0.15);
+}
+
+.edit-button {
+  position: absolute;
+  top: 8px;
+  right: 36px;
+  background: none;
+  border: none;
+  color: rgba(100, 180, 255, 0.6);
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.edit-button:hover {
+  color: rgba(100, 180, 255, 1);
+  background-color: rgba(60, 130, 255, 0.15);
 }
